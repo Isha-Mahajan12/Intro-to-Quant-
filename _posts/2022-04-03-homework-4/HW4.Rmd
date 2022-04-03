@@ -1,0 +1,23 @@
+---
+title: "Homework 4: Logistic Regression"
+description: |
+  Logistic Regression, Gelman Chapter 13 , 14 
+author:
+  - name: Isha Akshita Mahajan
+    url: https://example.com/norajones
+date: 2022-04-03
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Distill is a publication format for scientific and technical writing, native to the web.
+
+Learn more about using Distill at <https://rstudio.github.io/distill>.
+
+

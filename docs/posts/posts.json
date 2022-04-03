@@ -1,19 +1,19 @@
 [
   {
     "path": "posts/welcome/",
-    "title": "Welcome to Isha Akshita Mahajan",
-    "description": "Welcome to our new blog, Isha Akshita Mahajan. We hope you enjoy \nreading what we have to say!",
+    "title": "Welcome: Introduction to Quantitative Analysis",
+    "description": "Classwork from Introduction to Quantitative Analysis: Fall 2021",
     "author": [
       {
-        "name": "Nora Jones",
+        "name": "Isha Akshita Mahajan",
         "url": "https://example.com/norajones"
       }
     ],
     "date": "2022-04-03",
     "categories": [],
-    "contents": "\n\n\n\n",
+    "contents": "\nHi There, Thank you for checking out my blog. As a part of DACSS 603: Introduction to Quantitative Analysis, this blog consists of my code for coursework in exploratory data analysis, regression modeling and data visualizations. I hope you Enjoy!\n\n\n\n",
     "preview": {},
-    "last_modified": "2022-04-03T14:46:38-04:00",
-    "input_file": {}
+    "last_modified": "2022-04-03T15:01:28-04:00",
+    "input_file": "welcome.knit.md"
   }
 ]

@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Quantitative Analysis"
+title: "Welcome: Introduction to Quantitative Analysis"
 description: |
   Classwork from Introduction to Quantitative Analysis: Fall 2021
 author:

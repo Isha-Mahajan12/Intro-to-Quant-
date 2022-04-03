@@ -1,10 +1,9 @@
 ---
-title: "Welcome to Isha Akshita Mahajan"
+title: "Introduction to Quantitative Analysis"
 description: |
-  Welcome to our new blog, Isha Akshita Mahajan. We hope you enjoy 
-  reading what we have to say!
+  Classwork from Introduction to Quantitative Analysis: Fall 2021
 author:
-  - name: Nora Jones 
+  - name: isha Akshita Mahajan
     url: https://example.com/norajones
     affiliation: Spacely Sprockets
     affiliation_url: https://example.com/spacelysprokets
@@ -16,11 +15,8 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-
-# Learn more about creating blogs with Distill at:
-# https://rstudio.github.io/distill/blog.html
-
 ```
 
-
+Hi There! Thank you for checking out my blog. As a part of DACSS 603: Introduction to Quantitative Analysis, this blog consists of my code for coursework in exploratory data analysis, regression modeling and data visualizations
+I hope you enjoy! 
 

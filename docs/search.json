@@ -6,14 +6,14 @@
       "description": "Some additional details about the blog",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2022-04-03T14:46:45-04:00"
+      "last_modified": "2022-04-03T14:55:28-04:00"
     },
     {
       "path": "index.html",
       "title": "Isha Akshita Mahajan",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2022-04-03T14:46:46-04:00"
+      "last_modified": "2022-04-03T14:55:30-04:00"
     }
   ],
   "collections": ["posts/posts.json"]

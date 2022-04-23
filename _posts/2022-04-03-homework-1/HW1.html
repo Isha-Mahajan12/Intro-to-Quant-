@@ -111,7 +111,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Homework 1: Function Writing, Variation"]},{"type":"character","attributes":{},"value":["Gelman Chapter 6\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Isha Akshita Mahajan"]},{"type":"character","attributes":{},"value":["https://example.com/norajones"]}]}]},{"type":"character","attributes":{},"value":["2022-04-03"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Homework 1: Function Writing, Variation"]},{"type":"character","attributes":{},"value":["Gelman Chapter 6\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Isha Akshita Mahajan"]},{"type":"character","attributes":{},"value":["https://example.com/norajones"]}]}]},{"type":"character","attributes":{},"value":["2022-04-03"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","code_folding"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["hide"]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1483,7 +1483,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-article">
 <p>Setup Code:</p>
 <div class="layout-chunk" data-layout="l-body">
-
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#load packages tidyverse and rstanarm</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mc-stan.org/rstanarm/'>rstanarm</a></span><span class='op'>)</span>
+<span class='co'>#load earnings dataset from desired file path</span>
+<span class='va'>earnings</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"earnings.csv"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 </div>
 <h1 id="programming-fake-data-simulation-write-an-r-function-to">6.2 Programming Fake-Data Simulation: Write an R function to:</h1>
 <ol type="i">
@@ -1492,255 +1504,157 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><p>make a scatterplot of the data and fitted line</p></li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
+<span class='co'>#Create a function for a fake data simulation</span>
+<span class='va'>fake_data</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>a</span>,<span class='va'>b</span>,<span class='va'>sigma</span>,<span class='va'>n</span><span class='op'>)</span><span class='co'>#Think of this as variables</span>
+<span class='co'>#The curly brackets are what inputs go into and what outputs they generate</span>
+<span class='op'>{</span>
+<span class='co'>#create object x and define it using runif() function</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='va'>n</span>,<span class='fl'>0</span>,<span class='fl'>100</span><span class='op'>)</span>
+<span class='co'>#add in simple regression </span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='va'>a</span><span class='op'>+</span><span class='va'>b</span><span class='op'>*</span><span class='va'>x</span><span class='op'>+</span><span class='va'>sigma</span><span class='op'>*</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>
 
+<span class='va'>random</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='va'>y</span><span class='op'>)</span>
+
+<span class='co'>#Use Stan_glm function to fit the model</span>
+<span class='va'>fitted_random</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://mc-stan.org/rstanarm/reference/stan_glm.html'>stan_glm</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>~</span><span class='va'>x</span>, data <span class='op'>=</span> <span class='va'>random</span><span class='op'>)</span>
+
+<span class='co'>#use print to display results concisely </span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>fitted_random</span>, digits<span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>random</span><span class='op'>$</span><span class='va'>x</span>,<span class='va'>random</span><span class='op'>$</span><span class='va'>y</span>,main <span class='op'>=</span> <span class='st'>"Data generated and fitted regression line"</span><span class='op'>)</span>
+<span class='va'>a_hat</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>fitted_random</span><span class='op'>)</span> <span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
+<span class='va'>b_hat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>fitted_random</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span><span class='va'>a_hat</span>, <span class='va'>b_hat</span><span class='op'>)</span>
+
+<span class='va'>x_bar</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>random</span><span class='op'>$</span><span class='va'>x</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/text.html'>text</a></span><span class='op'>(</span><span class='va'>x_bar</span>, <span class='va'>a_hat</span> <span class='op'>+</span> <span class='va'>b_hat</span><span class='op'>*</span><span class='va'>x_bar</span>,
+<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"y ="</span>,<span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>a_hat</span>,<span class='fl'>2</span><span class='op'>)</span>,<span class='st'>"+"</span>,<span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>b_hat</span>, <span class='fl'>2</span><span class='op'>)</span>, <span class='st'>"* x"</span><span class='op'>)</span>, adj<span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span> <span class='op'>}</span>
+</code></pre>
+</div>
+</details>
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<pre><code>
-SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 1).
-Chain 1: 
-Chain 1: Gradient evaluation took 8.2e-05 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.82 seconds.
-Chain 1: Adjust your expectations accordingly!
-Chain 1: 
-Chain 1: 
-Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 1: 
-Chain 1:  Elapsed Time: 0.049199 seconds (Warm-up)
-Chain 1:                0.046578 seconds (Sampling)
-Chain 1:                0.095777 seconds (Total)
-Chain 1: 
-
-SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 2).
-Chain 2: 
-Chain 2: Gradient evaluation took 1.3e-05 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.13 seconds.
-Chain 2: Adjust your expectations accordingly!
-Chain 2: 
-Chain 2: 
-Chain 2: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 2: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 2: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 2: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 2: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 2: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 2: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 2: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 2: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 2: 
-Chain 2:  Elapsed Time: 0.065393 seconds (Warm-up)
-Chain 2:                0.053475 seconds (Sampling)
-Chain 2:                0.118868 seconds (Total)
-Chain 2: 
-
-SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 3).
-Chain 3: 
-Chain 3: Gradient evaluation took 1.1e-05 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
-Chain 3: Adjust your expectations accordingly!
-Chain 3: 
-Chain 3: 
-Chain 3: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 3: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 3: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 3: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 3: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 3: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 3: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 3: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 3: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 3: 
-Chain 3:  Elapsed Time: 0.069922 seconds (Warm-up)
-Chain 3:                0.062212 seconds (Sampling)
-Chain 3:                0.132134 seconds (Total)
-Chain 3: 
-
-SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 4).
-Chain 4: 
-Chain 4: Gradient evaluation took 1.4e-05 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.14 seconds.
-Chain 4: Adjust your expectations accordingly!
-Chain 4: 
-Chain 4: 
-Chain 4: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 4: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 4: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 4: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 4: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 4: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 4: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 4: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 4: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 4: 
-Chain 4:  Elapsed Time: 0.050538 seconds (Warm-up)
-Chain 4:                0.043311 seconds (Sampling)
-Chain 4:                0.093849 seconds (Total)
-Chain 4: 
-stan_glm
- family:       gaussian [identity]
- formula:      y ~ x
- observations: 100
- predictors:   2
-------
-            Median MAD_SD
-(Intercept) 0.387  0.092 
-x           0.200  0.002 
-
-Auxiliary parameter(s):
-      Median MAD_SD
-sigma 0.466  0.033 
-
-------
-* For help interpreting the printed output see ?print.stanreg
-* For info on the priors used see ?prior_summary.stanreg</code></pre>
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
+<span class='fu'>fake_data</span><span class='op'>(</span><span class='fl'>0.4</span>,<span class='fl'>0.2</span>,<span class='fl'>0.5</span>,<span class='fl'>100</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 <p><img src="HW1_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
 </div>
 <p>#6.3 Variation, uncertainty, and sample size: Repeat the example in Section 6.2, varying the number of data points, n. What happens to the parameter estimates and uncertainties when you increase the number of observations?</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre><code>
-SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 1).
-Chain 1: 
-Chain 1: Gradient evaluation took 2.5e-05 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.25 seconds.
-Chain 1: Adjust your expectations accordingly!
-Chain 1: 
-Chain 1: 
-Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 1: 
-Chain 1:  Elapsed Time: 0.066285 seconds (Warm-up)
-Chain 1:                0.071668 seconds (Sampling)
-Chain 1:                0.137953 seconds (Total)
-Chain 1: 
-
-SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 2).
-Chain 2: 
-Chain 2: Gradient evaluation took 2.7e-05 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.27 seconds.
-Chain 2: Adjust your expectations accordingly!
-Chain 2: 
-Chain 2: 
-Chain 2: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 2: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 2: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 2: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 2: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 2: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 2: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 2: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 2: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 2: 
-Chain 2:  Elapsed Time: 0.093037 seconds (Warm-up)
-Chain 2:                0.072264 seconds (Sampling)
-Chain 2:                0.165301 seconds (Total)
-Chain 2: 
-
-SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 3).
-Chain 3: 
-Chain 3: Gradient evaluation took 1.6e-05 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.16 seconds.
-Chain 3: Adjust your expectations accordingly!
-Chain 3: 
-Chain 3: 
-Chain 3: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 3: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 3: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 3: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 3: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 3: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 3: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 3: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 3: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 3: 
-Chain 3:  Elapsed Time: 0.072375 seconds (Warm-up)
-Chain 3:                0.07306 seconds (Sampling)
-Chain 3:                0.145435 seconds (Total)
-Chain 3: 
-
-SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 4).
-Chain 4: 
-Chain 4: Gradient evaluation took 1.6e-05 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.16 seconds.
-Chain 4: Adjust your expectations accordingly!
-Chain 4: 
-Chain 4: 
-Chain 4: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 4: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 4: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 4: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 4: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 4: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 4: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 4: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 4: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 4: 
-Chain 4:  Elapsed Time: 0.060577 seconds (Warm-up)
-Chain 4:                0.051687 seconds (Sampling)
-Chain 4:                0.112264 seconds (Total)
-Chain 4: 
-stan_glm
- family:       gaussian [identity]
- formula:      y ~ x
- observations: 175
- predictors:   2
-------
-            Median MAD_SD
-(Intercept) 0.434  0.070 
-x           0.200  0.001 
-
-Auxiliary parameter(s):
-      Median MAD_SD
-sigma 0.471  0.026 
-
-------
-* For help interpreting the printed output see ?print.stanreg
-* For info on the priors used see ?prior_summary.stanreg</code></pre>
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
+<span class='fu'>fake_data</span><span class='op'>(</span><span class='fl'>0.4</span>,<span class='fl'>0.2</span>,<span class='fl'>0.5</span>,<span class='fl'>175</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 <p><img src="HW1_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
+<span class='fu'>fake_data</span><span class='op'>(</span><span class='fl'>0.4</span>,<span class='fl'>0.2</span>,<span class='fl'>0.5</span>,<span class='fl'>215</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<p><img src="HW1_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
+<span class='fu'>fake_data</span><span class='op'>(</span><span class='fl'>0.4</span>,<span class='fl'>0.2</span>,<span class='fl'>0.5</span>,<span class='fl'>275</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<p><img src="HW1_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
+</div>
+<p><em>As I ran each code chunk by increasing the value of n in my sample, I observed that the MAD_SD values or the standard deviation started reducing. This suggests that a larger sample size leads to less error</em></p>
+<p>#6.5 Regression prediction and averages: The heights and earnings data in Section 6.3 are in the folder Earnings. Download the data and compute the average height for men and women in the sample.</p>
+<ol start="2" type="a">
+<li>Assuming 52% of adults are women, estimate the average earnings of adults in the population.</li>
+<li>Directly from the sample data compute the average earnings of men, women, and everyone. Compare these to the values calculated in parts (a) and (b)</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#look at the columns in the dataset</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>earnings</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<pre><code>  height weight male  earn earnk ethnicity education mother_education
+1     74    210    1 50000    50     White        16               16
+2     66    125    0 60000    60     White        16               16
+3     64    126    0 30000    30     White        16               16
+4     65    200    0 25000    25     White        17               17
+5     63    110    0 50000    50     Other        16               16
+6     68    165    0 62000    62     Black        18               18
+  father_education walk exercise smokenow tense angry age
+1               16    3        3        2     0     0  45
+2               16    6        5        1     0     0  58
+3               16    8        1        2     1     1  29
+4               NA    8        1        2     0     0  57
+5               16    5        6        2     0     0  91
+6               18    1        1        2     2     2  54</code></pre>
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#base R rules dataframe$column</span>
+<span class='co'>#Find the means </span>
+<span class='va'>men_mean</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>earnings</span><span class='op'>$</span><span class='va'>height</span><span class='op'>[</span><span class='va'>earnings</span><span class='op'>$</span><span class='va'>male</span><span class='op'>==</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span> 
+<span class='va'>women_mean</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>earnings</span><span class='op'>$</span><span class='va'>height</span><span class='op'>[</span><span class='va'>earnings</span><span class='op'>$</span><span class='va'>male</span><span class='op'>==</span><span class='fl'>0</span><span class='op'>]</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+</div>
+<p><strong>70.089 for men, 64.490 for women</strong></p>
+<p>Use these averages and fitted regression model displayed on page 84 to get a model-based estimate of the average earnings of men and of women in the population.</p>
+<div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
+<span class='co'>#Use Stan_glm function to fit the model</span>
+<span class='va'>fitted_regression</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://mc-stan.org/rstanarm/reference/stan_glm.html'>stan_glm</a></span><span class='op'>(</span> <span class='va'>earn</span> <span class='op'>~</span> <span class='va'>height</span> <span class='op'>+</span> <span class='va'>male</span>, data<span class='op'>=</span> <span class='va'>earnings</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
 <pre><code>
 SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 1.8e-05 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.18 seconds.
+Chain 1: Gradient evaluation took 6.2e-05 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.62 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -1757,9 +1671,9 @@ Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 1: 
-Chain 1:  Elapsed Time: 0.050135 seconds (Warm-up)
-Chain 1:                0.049118 seconds (Sampling)
-Chain 1:                0.099253 seconds (Total)
+Chain 1:  Elapsed Time: 0.705958 seconds (Warm-up)
+Chain 1:                0.181535 seconds (Sampling)
+Chain 1:                0.887493 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 2).
@@ -1782,15 +1696,15 @@ Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 2: 
-Chain 2:  Elapsed Time: 0.082239 seconds (Warm-up)
-Chain 2:                0.082301 seconds (Sampling)
-Chain 2:                0.16454 seconds (Total)
+Chain 2:  Elapsed Time: 0.512607 seconds (Warm-up)
+Chain 2:                0.169639 seconds (Sampling)
+Chain 2:                0.682246 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 3).
 Chain 3: 
-Chain 3: Gradient evaluation took 2e-05 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.2 seconds.
+Chain 3: Gradient evaluation took 1e-05 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.1 seconds.
 Chain 3: Adjust your expectations accordingly!
 Chain 3: 
 Chain 3: 
@@ -1807,15 +1721,15 @@ Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 3: 
-Chain 3:  Elapsed Time: 0.063073 seconds (Warm-up)
-Chain 3:                0.059982 seconds (Sampling)
-Chain 3:                0.123055 seconds (Total)
+Chain 3:  Elapsed Time: 1.04908 seconds (Warm-up)
+Chain 3:                0.199407 seconds (Sampling)
+Chain 3:                1.24848 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 4).
 Chain 4: 
-Chain 4: Gradient evaluation took 1e-05 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.1 seconds.
+Chain 4: Gradient evaluation took 1.4e-05 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.14 seconds.
 Chain 4: Adjust your expectations accordingly!
 Chain 4: 
 Chain 4: 
@@ -1832,277 +1746,21 @@ Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 0.053184 seconds (Warm-up)
-Chain 4:                0.0533 seconds (Sampling)
-Chain 4:                0.106484 seconds (Total)
-Chain 4: 
-stan_glm
- family:       gaussian [identity]
- formula:      y ~ x
- observations: 215
- predictors:   2
-------
-            Median MAD_SD
-(Intercept) 0.453  0.066 
-x           0.200  0.001 
-
-Auxiliary parameter(s):
-      Median MAD_SD
-sigma 0.494  0.024 
-
-------
-* For help interpreting the printed output see ?print.stanreg
-* For info on the priors used see ?prior_summary.stanreg</code></pre>
-<p><img src="HW1_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+Chain 4:  Elapsed Time: 0.33277 seconds (Warm-up)
+Chain 4:                0.199589 seconds (Sampling)
+Chain 4:                0.532359 seconds (Total)
+Chain 4: </code></pre>
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#use print to display results concisely </span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>fitted_regression</span>, digits<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
+</code></pre>
 </div>
-<div class="layout-chunk" data-layout="l-body">
-<pre><code>
-SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 1).
-Chain 1: 
-Chain 1: Gradient evaluation took 1.9e-05 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.19 seconds.
-Chain 1: Adjust your expectations accordingly!
-Chain 1: 
-Chain 1: 
-Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 1: 
-Chain 1:  Elapsed Time: 0.086818 seconds (Warm-up)
-Chain 1:                0.086089 seconds (Sampling)
-Chain 1:                0.172907 seconds (Total)
-Chain 1: 
-
-SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 2).
-Chain 2: 
-Chain 2: Gradient evaluation took 4.1e-05 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.41 seconds.
-Chain 2: Adjust your expectations accordingly!
-Chain 2: 
-Chain 2: 
-Chain 2: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 2: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 2: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 2: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 2: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 2: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 2: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 2: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 2: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 2: 
-Chain 2:  Elapsed Time: 0.056136 seconds (Warm-up)
-Chain 2:                0.05515 seconds (Sampling)
-Chain 2:                0.111286 seconds (Total)
-Chain 2: 
-
-SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 3).
-Chain 3: 
-Chain 3: Gradient evaluation took 1.1e-05 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
-Chain 3: Adjust your expectations accordingly!
-Chain 3: 
-Chain 3: 
-Chain 3: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 3: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 3: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 3: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 3: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 3: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 3: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 3: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 3: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 3: 
-Chain 3:  Elapsed Time: 0.073266 seconds (Warm-up)
-Chain 3:                0.064506 seconds (Sampling)
-Chain 3:                0.137772 seconds (Total)
-Chain 3: 
-
-SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 4).
-Chain 4: 
-Chain 4: Gradient evaluation took 1e-05 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.1 seconds.
-Chain 4: Adjust your expectations accordingly!
-Chain 4: 
-Chain 4: 
-Chain 4: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 4: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 4: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 4: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 4: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 4: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 4: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 4: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 4: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 4: 
-Chain 4:  Elapsed Time: 0.055684 seconds (Warm-up)
-Chain 4:                0.052252 seconds (Sampling)
-Chain 4:                0.107936 seconds (Total)
-Chain 4: 
-stan_glm
- family:       gaussian [identity]
- formula:      y ~ x
- observations: 275
- predictors:   2
-------
-            Median MAD_SD
-(Intercept) 0.473  0.062 
-x           0.199  0.001 
-
-Auxiliary parameter(s):
-      Median MAD_SD
-sigma 0.513  0.022 
-
-------
-* For help interpreting the printed output see ?print.stanreg
-* For info on the priors used see ?prior_summary.stanreg</code></pre>
-<p><img src="HW1_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
-</div>
-<p><em>As I ran each code chunk by increasing the value of n in my sample, I observed that the MAD_SD values or the standard deviation started reducing. This suggests that a larger sample size leads to less error</em></p>
-<p>#6.5 Regression prediction and averages: The heights and earnings data in Section 6.3 are in the folder Earnings. Download the data and compute the average height for men and women in the sample.</p>
-<ol start="2" type="a">
-<li>Assuming 52% of adults are women, estimate the average earnings of adults in the population.</li>
-<li>Directly from the sample data compute the average earnings of men, women, and everyone. Compare these to the values calculated in parts (a) and (b)</li>
-</ol>
-<div class="layout-chunk" data-layout="l-body">
-<pre><code>  height weight male  earn earnk ethnicity education mother_education
-1     74    210    1 50000    50     White        16               16
-2     66    125    0 60000    60     White        16               16
-3     64    126    0 30000    30     White        16               16
-4     65    200    0 25000    25     White        17               17
-5     63    110    0 50000    50     Other        16               16
-6     68    165    0 62000    62     Black        18               18
-  father_education walk exercise smokenow tense angry age
-1               16    3        3        2     0     0  45
-2               16    6        5        1     0     0  58
-3               16    8        1        2     1     1  29
-4               NA    8        1        2     0     0  57
-5               16    5        6        2     0     0  91
-6               18    1        1        2     2     2  54</code></pre>
-</div>
-<p><strong>70.089 for men, 64.490 for women</strong></p>
-<ol type="a">
-<li>Use these averages and fitted regression model displayed on page 84 to get a model-based estimate of the average earnings of men and of women in the population.</li>
-</ol>
-<div class="layout-chunk" data-layout="l-body">
-<pre><code>
-SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 1).
-Chain 1: 
-Chain 1: Gradient evaluation took 2.4e-05 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.24 seconds.
-Chain 1: Adjust your expectations accordingly!
-Chain 1: 
-Chain 1: 
-Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 1: 
-Chain 1:  Elapsed Time: 0.794078 seconds (Warm-up)
-Chain 1:                0.175682 seconds (Sampling)
-Chain 1:                0.96976 seconds (Total)
-Chain 1: 
-
-SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 2).
-Chain 2: 
-Chain 2: Gradient evaluation took 1.1e-05 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
-Chain 2: Adjust your expectations accordingly!
-Chain 2: 
-Chain 2: 
-Chain 2: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 2: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 2: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 2: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 2: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 2: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 2: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 2: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 2: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 2: 
-Chain 2:  Elapsed Time: 0.530392 seconds (Warm-up)
-Chain 2:                0.169498 seconds (Sampling)
-Chain 2:                0.69989 seconds (Total)
-Chain 2: 
-
-SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 3).
-Chain 3: 
-Chain 3: Gradient evaluation took 1.2e-05 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.12 seconds.
-Chain 3: Adjust your expectations accordingly!
-Chain 3: 
-Chain 3: 
-Chain 3: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 3: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 3: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 3: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 3: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 3: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 3: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 3: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 3: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 3: 
-Chain 3:  Elapsed Time: 0.992653 seconds (Warm-up)
-Chain 3:                0.170462 seconds (Sampling)
-Chain 3:                1.16311 seconds (Total)
-Chain 3: 
-
-SAMPLING FOR MODEL &#39;continuous&#39; NOW (CHAIN 4).
-Chain 4: 
-Chain 4: Gradient evaluation took 1.1e-05 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.11 seconds.
-Chain 4: Adjust your expectations accordingly!
-Chain 4: 
-Chain 4: 
-Chain 4: Iteration:    1 / 2000 [  0%]  (Warmup)
-Chain 4: Iteration:  200 / 2000 [ 10%]  (Warmup)
-Chain 4: Iteration:  400 / 2000 [ 20%]  (Warmup)
-Chain 4: Iteration:  600 / 2000 [ 30%]  (Warmup)
-Chain 4: Iteration:  800 / 2000 [ 40%]  (Warmup)
-Chain 4: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-Chain 4: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-Chain 4: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-Chain 4: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
-Chain 4: 
-Chain 4:  Elapsed Time: 0.284103 seconds (Warm-up)
-Chain 4:                0.172834 seconds (Sampling)
-Chain 4:                0.456937 seconds (Total)
-Chain 4: 
-stan_glm
+</details>
+<pre><code>stan_glm
  family:       gaussian [identity]
  formula:      earn ~ height + male
  observations: 1816
@@ -2121,7 +1779,7 @@ sigma 21398.62   346.92
 * For help interpreting the printed output see ?print.stanreg
 * For info on the priors used see ?prior_summary.stanreg</code></pre>
 </div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

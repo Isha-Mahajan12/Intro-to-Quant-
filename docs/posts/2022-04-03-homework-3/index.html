@@ -112,12 +112,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Homework 3: Regression Modelling"]},{"type":"character","attributes":{},"value":["\"Gelman Chapter 11, 12\""]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Isha Akshita Mahajan"]},{"type":"character","attributes":{},"value":["https://example.com/norajones"]}]}]},{"type":"character","attributes":{},"value":["2022-04-03"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Homework 3: Regression Modelling"]},{"type":"character","attributes":{},"value":["\"Gelman Chapter 11, 12\""]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Isha Akshita Mahajan"]},{"type":"character","attributes":{},"value":["https://example.com/norajones"]}]}]},{"type":"character","attributes":{},"value":["2022-04-03"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","code_folding"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["hide"]}]}]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["beauty.csv","HW3_files/figure-html5/unnamed-chunk-12-1.png","HW3_files/figure-html5/unnamed-chunk-14-1.png","HW3_files/figure-html5/unnamed-chunk-6-1.png","HW3_files/figure-html5/unnamed-chunk-7-1.png","HW3_files/figure-html5/unnamed-chunk-8-1.png","pollution.csv","pyth.txt"]}
+  {"type":"character","attributes":{},"value":["beauty.csv","HW3_files/anchor-4.2.2/anchor.min.js","HW3_files/bowser-1.9.3/bowser.min.js","HW3_files/distill-2.2.21/template.v2.js","HW3_files/figure-html5/unnamed-chunk-12-1.png","HW3_files/figure-html5/unnamed-chunk-14-1.png","HW3_files/figure-html5/unnamed-chunk-6-1.png","HW3_files/figure-html5/unnamed-chunk-7-1.png","HW3_files/figure-html5/unnamed-chunk-8-1.png","HW3_files/header-attrs-2.13/header-attrs.js","HW3_files/jquery-3.6.0/jquery-3.6.0.js","HW3_files/jquery-3.6.0/jquery-3.6.0.min.js","HW3_files/jquery-3.6.0/jquery-3.6.0.min.map","HW3_files/popper-2.6.0/popper.min.js","HW3_files/tippy-6.2.7/tippy-bundle.umd.min.js","HW3_files/tippy-6.2.7/tippy-light-border.css","HW3_files/tippy-6.2.7/tippy.css","HW3_files/tippy-6.2.7/tippy.umd.min.js","HW3_files/webcomponents-2.0.0/webcomponents.js","pollution.csv","pyth.txt"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2102,6 +2102,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="d-article">
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://mc-stan.org/rstanarm/'>rstanarm</a></span><span class='op'>)</span>
@@ -2109,6 +2113,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 </div>
 <h2 id="assumptions-of-the-regression-model">11.1 Assumptions of the Regression Model:</h2>
 <p>For the model in Section 7.1 predicting presidential vote share from the economy, discuss each of the assumptions in the numbered list in Section 11.1. For each assumption, state where it is made (implicitly or explicitly) in the model, whether it seems reasonable, and how you might address violations of the assumptions</p>
@@ -2126,6 +2131,10 @@ document.addEventListener('DOMContentLoaded', function() {
 <li><p>Make predictions for the remaining 20 data points in the file. How confident do you feel about these predictions? After doing this exercise, take a look at Gelman and Nolan (2017, section 10.4) to see where these data came from**</p></li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>007</span><span class='op'>)</span>
 <span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></span><span class='op'>(</span><span class='st'>"Pyth.txt"</span>,skip<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span> 
@@ -2135,13 +2144,19 @@ document.addEventListener('DOMContentLoaded', function() {
 <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice</a></span><span class='op'>(</span><span class='fl'>41</span><span class='op'>:</span><span class='fl'>60</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 </div>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fit</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>V1</span><span class='op'>~</span> <span class='va'>V2</span>, data<span class='op'>=</span><span class='va'>df</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 <pre><code>
 Call:
 lm(formula = V1 ~ V2, data = df)
@@ -2162,11 +2177,16 @@ Multiple R-squared:  0.1535,    Adjusted R-squared:  0.1312
 F-statistic:  6.89 on 1 and 38 DF,  p-value: 0.01242</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fit_1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span> <span class='op'>(</span><span class='va'>V1</span> <span class='op'>~</span> <span class='va'>V3</span>, data<span class='op'>=</span><span class='va'>df</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit_1</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 <pre><code>
 Call:
 lm(formula = V1 ~ V3, data = df)
@@ -2187,11 +2207,16 @@ Multiple R-squared:  0.8787,    Adjusted R-squared:  0.8755
 F-statistic: 275.2 on 1 and 38 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fit_2</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>V1</span><span class='op'>~</span> <span class='va'>V2</span><span class='op'>+</span><span class='va'>V3</span>, data<span class='op'>=</span><span class='va'>df</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>fit_2</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 <pre><code>
 Call:
 lm(formula = V1 ~ V2 + V3, data = df)
@@ -2214,22 +2239,36 @@ F-statistic: 652.4 on 2 and 37 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p><em>From this regression model, we see that the estimates of the slope coefficients and intercept estimates are statistically significant. For every 1 unit increase in x2, y increases by 0.3 on average. The R square value of 97.24 suggests that our linear fit explains 97.24 % of the variation in y values.</em></p>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>V2</span>, <span class='va'>df</span><span class='op'>$</span><span class='va'>V1</span>, xlab <span class='op'>=</span> <span class='st'>"x1"</span>, ylab<span class='op'>=</span> <span class='st'>"y"</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 <p><img src="HW3_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>V3</span>, <span class='va'>df</span><span class='op'>$</span><span class='va'>V1</span>, xlab <span class='op'>=</span> <span class='st'>"x2"</span>, ylab<span class='op'>=</span> <span class='st'>"y"</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='va'>fit_1</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 <p><img src="HW3_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sims_11.5</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='va'>fit_2</span><span class='op'>)</span>
 <span class='va'>predicted</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>fit_2</span><span class='op'>)</span>
@@ -2238,6 +2277,7 @@ F-statistic: 652.4 on 2 and 37 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>h<span class='op'>=</span><span class='fl'>0</span>, col<span class='op'>=</span> <span class='st'>"grey"</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 <p><img src="HW3_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
 </div>
 <p><em>Since the points in residual plot are randomly scattered in comparison to the horizontal line, it seems that the model is correct.</em></p>
@@ -2249,6 +2289,10 @@ F-statistic: 652.4 on 2 and 37 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li><p>Compare predictive errors point wise. Are there some data points that have high predictive errors for all the fitted models?</p></li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>beauty</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"beauty.csv"</span><span class='op'>)</span>
 
@@ -2256,6 +2300,7 @@ F-statistic: 652.4 on 2 and 37 DF,  p-value: &lt; 2.2e-16</code></pre>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>fit_beauty</span>, digits<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 <pre><code>stan_glm
  family:       gaussian [identity]
  formula:      eval ~ beauty
@@ -2273,12 +2318,16 @@ sigma 0.55   0.02
 ------
 * For help interpreting the printed output see ?print.stanreg
 * For info on the priors used see ?prior_summary.stanreg</code></pre>
+<details>
+<summary>
+hide
+</summary>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class='va'>fit_beauty1</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://mc-stan.org/rstanarm/reference/stan_glm.html'>stan_glm</a></span><span class='op'>(</span><span class='va'>eval</span><span class='op'>~</span><span class='va'>beauty</span><span class='op'>+</span><span class='va'>female</span>, data<span class='op'>=</span> <span class='va'>beauty</span>, refresh<span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fit_beauty1</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://mc-stan.org/rstanarm/reference/stan_glm.html'>stan_glm</a></span><span class='op'>(</span><span class='va'>eval</span><span class='op'>~</span><span class='va'>beauty</span><span class='op'>+</span><span class='va'>female</span>, data<span class='op'>=</span> <span class='va'>beauty</span>, refresh<span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>fit_beauty1</span>, digits<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 <pre><code>stan_glm
  family:       gaussian [identity]
  formula:      eval ~ beauty + female
@@ -2297,12 +2346,16 @@ sigma 0.54   0.02
 ------
 * For help interpreting the printed output see ?print.stanreg
 * For info on the priors used see ?prior_summary.stanreg</code></pre>
+<details>
+<summary>
+hide
+</summary>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r">
-<span class='va'>fit_beauty2</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://mc-stan.org/rstanarm/reference/stan_glm.html'>stan_glm</a></span><span class='op'>(</span><span class='va'>eval</span><span class='op'>~</span><span class='va'>beauty</span><span class='op'>+</span><span class='va'>female</span><span class='op'>+</span><span class='va'>age</span><span class='op'>+</span><span class='va'>female</span><span class='op'>:</span><span class='va'>age</span>, data<span class='op'>=</span> <span class='va'>beauty</span>, refresh<span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fit_beauty2</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://mc-stan.org/rstanarm/reference/stan_glm.html'>stan_glm</a></span><span class='op'>(</span><span class='va'>eval</span><span class='op'>~</span><span class='va'>beauty</span><span class='op'>+</span><span class='va'>female</span><span class='op'>+</span><span class='va'>age</span><span class='op'>+</span><span class='va'>female</span><span class='op'>:</span><span class='va'>age</span>, data<span class='op'>=</span> <span class='va'>beauty</span>, refresh<span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>fit_beauty2</span>, digits<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 <pre><code>stan_glm
  family:       gaussian [identity]
  formula:      eval ~ beauty + female + age + female:age
@@ -2325,11 +2378,16 @@ sigma 0.54   0.02
 * For info on the priors used see ?prior_summary.stanreg</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>loo</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://mc-stan.org/rstanarm/reference/loo.stanreg.html'>loo</a></span><span class='op'>(</span><span class='va'>fit_beauty</span><span class='op'>)</span>
 <span class='va'>loo</span>
 </code></pre>
 </div>
+</details>
 <pre><code>
 Computed from 4000 by 463 log-likelihood matrix
 
@@ -2342,11 +2400,16 @@ Monte Carlo SE of elpd_loo is 0.0.
 
 All Pareto k estimates are good (k &lt; 0.5).
 See help(&#39;pareto-k-diagnostic&#39;) for details.</code></pre>
+<details>
+<summary>
+hide
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>loo1</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://mc-stan.org/rstanarm/reference/loo.stanreg.html'>loo</a></span><span class='op'>(</span><span class='va'>fit_beauty1</span><span class='op'>)</span>
 <span class='va'>loo1</span>
 </code></pre>
 </div>
+</details>
 <pre><code>
 Computed from 4000 by 463 log-likelihood matrix
 
@@ -2359,11 +2422,16 @@ Monte Carlo SE of elpd_loo is 0.0.
 
 All Pareto k estimates are good (k &lt; 0.5).
 See help(&#39;pareto-k-diagnostic&#39;) for details.</code></pre>
+<details>
+<summary>
+hide
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>loo2</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://mc-stan.org/rstanarm/reference/loo.stanreg.html'>loo</a></span><span class='op'>(</span><span class='va'>fit_beauty2</span><span class='op'>)</span>
 <span class='va'>loo2</span>
 </code></pre>
 </div>
+</details>
 <pre><code>
 Computed from 4000 by 463 log-likelihood matrix
 
@@ -2400,11 +2468,16 @@ See help(&#39;pareto-k-diagnostic&#39;) for details.</code></pre>
 <li><p>Cross validate: fit the model you chose above to the first half of the data and then predict for the second half. You used all the data to construct the model in (d), so this is not really cross validation, but it gives a sense of how the steps of cross validation can be implemented.</p></li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pollution</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"pollution.csv"</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>pollution</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 <pre><code># A tibble: 6 × 16
    prec  jant  jult ovr65  popn  educ  hous  dens  nonw wwdrk  poor
   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -2418,6 +2491,10 @@ See help(&#39;pareto-k-diagnostic&#39;) for details.</code></pre>
 #   humid &lt;dbl&gt;, mort &lt;dbl&gt;</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>plot_pollution</span><span class='op'>&lt;-</span> <span class='va'>pollution</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>nox</span>,y<span class='op'>=</span><span class='va'>mort</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
@@ -2430,15 +2507,21 @@ See help(&#39;pareto-k-diagnostic&#39;) for details.</code></pre>
 <span class='va'>plot_pollution</span>
 </code></pre>
 </div>
+</details>
 <p><img src="HW3_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
 </div>
 Regression
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fit_pollution</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://mc-stan.org/rstanarm/reference/stan_glm.html'>stan_glm</a></span><span class='op'>(</span><span class='va'>mort</span><span class='op'>~</span><span class='va'>nox</span>, data <span class='op'>=</span> <span class='va'>pollution</span>, refresh<span class='op'>=</span><span class='fl'>0</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>fit_pollution</span>, digits<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 <pre><code>stan_glm
  family:       gaussian [identity]
  formula:      mort ~ nox
@@ -2459,6 +2542,10 @@ sigma 62.83   5.81
 </div>
 Residual Plot
 <div class="layout-chunk" data-layout="l-body">
+<details>
+<summary>
+hide
+</summary>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>predicted_1</span><span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>fit_pollution</span><span class='op'>)</span>
 <span class='va'>resid_1</span> <span class='op'>&lt;-</span> <span class='va'>pollution</span><span class='op'>$</span><span class='va'>mort</span><span class='op'>-</span> <span class='va'>predicted_1</span>
@@ -2468,6 +2555,7 @@ Residual Plot
 <span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span>, col<span class='op'>=</span><span class='st'>"gray"</span>, lwd<span class='op'>=</span><span class='fl'>.5</span><span class='op'>)</span>
 </code></pre>
 </div>
+</details>
 <p><img src="HW3_files/figure-html5/unnamed-chunk-14-1.png" width="624" /></p>
 </div>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>

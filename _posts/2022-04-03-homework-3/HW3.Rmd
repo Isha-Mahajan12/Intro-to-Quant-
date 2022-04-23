@@ -9,6 +9,7 @@ date: 2022-04-03
 output:
   distill::distill_article:
     self_contained: false
+    code_folding: hide
 ---
 
 
@@ -52,7 +53,7 @@ Residuals and predictions: The folder Pyth contains outcome y and predictors x1,
 (d) Make predictions for the remaining 20 data points in the file. How confident do you feel about these predictions?  After doing this exercise, take a look at Gelman and Nolan (2017, section 10.4) to see where these data came from**  
 
 
-```{r , collapse = TRUE}
+```{r}
 set.seed(007)
 data <- read.table("Pyth.txt",skip=1) 
 df<- data %>%
@@ -61,34 +62,34 @@ df_1<- data %>%
 slice(41:60)
 ```
 
-```{r, collapse = TRUE}
+```{r}
 fit<- lm(V1~ V2, data=df)
 summary(fit)
 ```
 
-```{r, collapse = TRUE}
+```{r}
 fit_1 <- lm (V1 ~ V3, data=df)
 summary(fit_1)
 ```
 
-```{r, collapse = TRUE}
+```{r}
 fit_2<- lm(V1~ V2+V3, data=df)
 summary(fit_2)
 ```
 
 *From this regression model, we see that the estimates of the slope coefficients and intercept estimates are statistically significant. For every 1 unit increase in x2, y increases by 0.3 on average.  The R square value of 97.24 suggests that our linear fit explains 97.24 % of the variation in y values.* 
 
-```{r, collapse = TRUE}
+```{r}
 plot(df$V2, df$V1, xlab = "x1", ylab= "y")
 abline(coef(fit))
 ```
 
-```{r, collapse = TRUE}
+```{r}
 plot(df$V3, df$V1, xlab = "x2", ylab= "y")
 abline(coef(fit_1))
 ```
 
-```{r, collapse = TRUE}
+```{r}
 sims_11.5 <- as.matrix(fit_2)
 predicted<- predict(fit_2)
 residual<- df$V1-predicted
@@ -109,7 +110,7 @@ Use LOO to compare different models fit to the beauty and teaching evaluations e
 (b) Compare predictive errors point wise. Are there some data points that have high predictive  errors for all the fitted models?
 
 
-```{r, collapse = TRUE}
+```{r}
 beauty<- read.csv("beauty.csv")
 
 fit_beauty <- stan_glm(eval~beauty, data= beauty, refresh=0)
@@ -123,7 +124,7 @@ print(fit_beauty2, digits=2)
 ```
 
 
-```{r, collapse = TRUE}
+```{r}
 loo<- loo(fit_beauty)
 loo
 loo1<- loo(fit_beauty1)
@@ -177,12 +178,12 @@ For  this exercise we shall model mortality rate given nitric oxides, sulfur dio
 
 (e) Cross validate: fit the model you chose above to the first half of the data and then predict for  the second half. You used all the data to construct the model in (d), so this is not really cross  validation, but it gives a sense of how the steps of cross validation can be implemented. 
 
-```{r, collapse = TRUE} 
+```{r} 
 pollution<- read_csv("pollution.csv")
 head(pollution)
 ```
 
-```{r, collapse = TRUE}
+```{r}
 plot_pollution<- pollution %>% 
   ggplot(aes(x=nox,y=mort))+
   geom_point()+
@@ -194,12 +195,12 @@ plot_pollution<- pollution %>%
 plot_pollution
 ```
 Regression
-```{r, collapse = TRUE}
+```{r}
 fit_pollution<- stan_glm(mort~nox, data = pollution, refresh=0)
 print(fit_pollution, digits=2)
 ```
 Residual Plot 
-```{r, collapse = TRUE}
+```{r}
 predicted_1<- predict(fit_pollution)
 resid_1 <- pollution$mort- predicted_1
 plot(predicted_1, resid_1, xlab="Predicted value", ylab="Residual",

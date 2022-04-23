@@ -1,5 +1,5 @@
 ---
-title: "Homework 3: Regression Modelling"
+title: "Homework 3: Regression"
 description: |
     "Gelman Chapter 11, 12"
 author:

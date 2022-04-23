@@ -1,7 +1,7 @@
 ---
 title: "Homework 2: Exploratory Data Analysis"
 description: |
- Exploratory Data Analysis on Voter Turnout and Ethnic Data 
+ Exploratory Data Analysis on Voter Turnout and Ethnic Data and Gelman Chapter 10 
 author:
   - name: Isha Akshita Mahajan
     url: https://example.com/norajones
@@ -9,10 +9,11 @@ date: 2022-04-03
 output:
   distill::distill_article:
     self_contained: false
+    code_folding: hide
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
@@ -49,7 +50,7 @@ states<- voter_data %>%
 
 Create a boxplot that compares turnout in elections with and without a co-ethnic candidate.Be sure to use informative labels.Interpret the resulting graph.
 
-```{r}
+```{r,code_folding: hide}
 library(ggplot2)
 library(ggthemes)
 
@@ -89,7 +90,7 @@ summary(regression_3)
 
 You decide to investigate the results of the previous question a bit more carefully because the elections with co-ethnic candidates may differ from the elections without co-ethnic candidates in other ways.  Create a scatter plot where the x-axis is the proportion of co-ethnic voting-age population and the y-axis is black voter turnout. Color your points according to candidate co-ethnicity. That is, make the points for elections featuring co-ethnic candidates one color, and make the points for elections featuring no co-ethnic candidates a different color. Interpret the graph.
 
-```{r}
+```{r,code_folding: hide}
 scatterplot<- voter_data %>% 
   group_by(candidate) %>% 
   select(candidate,turnout,CVAP)%>%

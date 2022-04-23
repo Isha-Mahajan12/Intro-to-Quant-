@@ -9,6 +9,7 @@ date: 2022-04-03
 output:
   distill::distill_article:
     self_contained: false
+     code_folding: hide
 ---
 
 
@@ -34,7 +35,7 @@ earnings <- read.csv("earnings.csv")
 
 (iii) make a scatterplot of the data and fitted line
 
-```{r, collapse = TRUE}
+```{r, results='hide'}
 set.seed(3)
 #Create a function for a fake data simulation
 fake_data <- function(a,b,sigma,n)#Think of this as variables
@@ -64,24 +65,24 @@ paste("y =",round(a_hat,2),"+",round(b_hat, 2), "* x"), adj=0) }
 ```
 
 
-```{r, collapse = TRUE}
+```{r, results='hide'}
 set.seed(3)
 fake_data(0.4,0.2,0.5,100)
 ```
 
 #6.3 Variation, uncertainty, and sample size: Repeat the example in Section 6.2, varying the number  of data points, n. What happens to the parameter estimates and uncertainties when you increase the number of observations? 
 
-```{r,collapse = TRUE}
+```{r,results='hide'}
 set.seed(3)
 fake_data(0.4,0.2,0.5,175)
 ```
 
-```{r, collapse = TRUE}
+```{r, results='hide'}
 set.seed(3)
 fake_data(0.4,0.2,0.5,215)
 ```
 
-```{r, collapse = TRUE}
+```{r, results='hide'}
 set.seed(3)
 fake_data(0.4,0.2,0.5,275)
 ```
@@ -93,20 +94,21 @@ fake_data(0.4,0.2,0.5,275)
 (b) Assuming 52% of adults are women, estimate the average earnings of adults in the population.
 (c) Directly from the sample data compute the average earnings of men, women, and everyone. Compare these to the values calculated in parts (a) and (b)
 
-```{r, collapse = TRUE}
+```{r}
 #look at the columns in the dataset
 head(earnings)
 #base R rules dataframe$column
 #Find the means 
 men_mean <- mean(earnings$height[earnings$male==1]) 
 women_mean <- mean(earnings$height[earnings$male==0])
+
 ```
 
 **70.089 for men, 64.490 for women** 
 
 (a) Use these averages and fitted regression model displayed on page 84 to get a model-based estimate of the average earnings of men and of women in the population. 
 
-```{r, collapse = TRUE}
+```{r results='hide'}
 set.seed(3)
 #Use Stan_glm function to fit the model
 fitted_regression <- stan_glm( earn ~ height + male, data= earnings)

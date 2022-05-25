@@ -96,9 +96,9 @@
     ],
     "date": "2022-04-03",
     "categories": [],
-    "contents": "\nHi There, Thank you for stopping by my first attempt to make a distill blog! As a part of DACSS 603: Introduction to Quantitative Analysis, this blog consists of my code for coursework in exploratory data analysis, regression modeling and data visualizations. Happy Browsing!\n\n\n\n",
+    "contents": "\nHi There, Thank you for stopping by my first attempt to make a distill blog!\nAs a part of DACSS 603: Introduction to Quantitative Analysis, this blog consists of my code for coursework in exploratory data analysis, regression modeling and data visualizations. Happy Browsing!\n\n\n\n",
     "preview": {},
-    "last_modified": "2022-05-25T14:29:18-04:00",
-    "input_file": {}
+    "last_modified": "2022-05-25T14:50:37-04:00",
+    "input_file": "welcome.knit.md"
   }
 ]

@@ -1,5 +1,12 @@
 ---
 title: "Isha Akshita Mahajan"
 site: distill::distill_website
-listing: posts
+listing: 
+  posts: 
+    - _posts/welcome
+    - _posts/2022-04-03-homework-1
+    - _posts/2022-04-03-homework-2
+    - _posts/2022-04-03-homework-3
+    - _posts/2022-04-03-homework-4
+    - _posts/2022-04-03-homework-5
 ---

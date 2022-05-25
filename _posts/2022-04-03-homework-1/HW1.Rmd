@@ -4,7 +4,7 @@ description: |
   Gelman Chapter 6
 author:
   - name: Isha Akshita Mahajan
-    url: https://example.com/norajones
+    affiliation: UMass Amherst
 date: 2022-04-03
 output:
   distill::distill_article:
@@ -12,19 +12,16 @@ output:
     code_folding: hide
 ---
 
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-Setup Code:
+## Setup Code:
 
 ```{r}
 #load packages tidyverse and rstanarm
 library(tidyverse)
 library(rstanarm)
+library(kableExtra)
 #load earnings dataset from desired file path
 earnings <- read.csv("earnings.csv")
+kable(head(earnings))
 ```
 
 # 6.2 Programming Fake-Data Simulation: Write an R function to: 
@@ -45,23 +42,19 @@ fake_data <- function(a,b,sigma,n)#Think of this as variables
 x <- runif(n,0,100)
 #add in simple regression 
 y <- a+b*x+sigma*rnorm(n)
-
 random <- data.frame(x,y)
-
 #Use Stan_glm function to fit the model
 fitted_random <- stan_glm(y~x, data = random)
-
 #use print to display results concisely 
 print(fitted_random, digits=3)
-
 plot(random$x,random$y,main = "Data generated and fitted regression line")
 a_hat<- coef(fitted_random) [1]
 b_hat <- coef(fitted_random)[2]
 abline(a_hat, b_hat)
-
 x_bar <-mean(random$x)
 text(x_bar, a_hat + b_hat*x_bar,
-paste("y =",round(a_hat,2),"+",round(b_hat, 2), "* x"), adj=0) }
+paste("y =",round(a_hat,2),"+",round(b_hat, 2), "* x"), adj=0) 
+}
 ```
 
 
@@ -96,12 +89,11 @@ fake_data(0.4,0.2,0.5,275)
 
 ```{r}
 #look at the columns in the dataset
-head(earnings)
+kable(head(earnings))
 #base R rules dataframe$column
 #Find the means 
 men_mean <- mean(earnings$height[earnings$male==1]) 
 women_mean <- mean(earnings$height[earnings$male==0])
-
 ```
 
 **70.089 for men, 64.490 for women** 
@@ -113,7 +105,7 @@ set.seed(3)
 #Use Stan_glm function to fit the model
 fitted_regression <- stan_glm( earn ~ height + male, data= earnings)
 #use print to display results concisely 
-print(fitted_regression, digits=2)
+kable(print(fitted_regression, digits=2))
 ```
 
 

@@ -4,9 +4,7 @@ description: |
   Classwork from Introduction to Quantitative Analysis: Fall 2021
 author:
   - name: Isha Akshita Mahajan
-    url: https://example.com/norajones
-    affiliation: Spacely Sprockets
-    affiliation_url: https://example.com/spacelysprokets
+    affiliation: UMass Amherst
 date: 04-03-2022
 output:
   distill::distill_article:

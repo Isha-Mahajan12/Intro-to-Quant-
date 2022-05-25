@@ -105,7 +105,7 @@ set.seed(3)
 #Use Stan_glm function to fit the model
 fitted_regression <- stan_glm( earn ~ height + male, data= earnings)
 #use print to display results concisely 
-kable(print(fitted_regression, digits=2))
+print(fitted_regression, digits=2)
 ```
 
 

@@ -1,7 +1,7 @@
 name: "."
-title: "Isha Akshita Mahajan"
+title: "Quantitative Analysis"
 description: |
-  Isha Akshita Mahajan
+  DACSS 603: Introduction to Quantitative Analysis
 output_dir: "docs"
 navbar:
   right:

@@ -4,7 +4,7 @@ description: |
  Exploratory Data Analysis on Voter Turnout and Ethnic Data and Gelman Chapter 10 
 author:
   - name: Isha Akshita Mahajan
-    url: https://example.com/norajones
+    affiliation: UMass Amherst
 date: 2022-04-03
 output:
   distill::distill_article:
